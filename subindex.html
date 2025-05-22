@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <script>
+    window.onload = function () {
+      const weight = parseFloat(localStorage.getItem("weight"));
+      const height = parseFloat(localStorage.getItem("height"));
+      const imc = weight / (height * height);
+
+      document.getElementById("imctext").innerText = `Tu índice de masa corporal es: ${imc.toFixed(2)}`;
+
+      let nivelImc = 0;
+
+      // Determinar nivel IMC
+      if (imc <= 18.5) {
+        nivelImc = 1; 
+      } else if (imc > 18.5 && imc < 24.9) {
+        nivelImc = 2; 
+      } else if (imc >= 25) {
+        nivelImc = 3; 
+      }
+      document.getElementById("img1").style.display = "none";
+      document.getElementById("img2").style.display = "none";
+      document.getElementById("img3").style.display = "none";
+
+      if (nivelImc === 1) {
+        document.getElementById("img1").style.display = "block";
+      } else if (nivelImc === 2) {
+        document.getElementById("img2").style.display = "block";
+      } else if (nivelImc === 3) {
+        document.getElementById("img3").style.display = "block";
+      }
+    };
+
+    function back() {
+      window.location.replace("index.html");
+    }
+  </script>
+</head>
+
+<body class="p-4">
+  <h1 id="imctext">Cargando...</h1>
+  <h2>Descripción de tu masa corporal</h2>
+
+  <table class="table table-bordered text-center mt-3">
+    <thead class="table-light">
+      <tr>
+        <th>Estado</th>
+        <th>Check</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><label>Bajo peso</label></td>
+        <td><img id="img1" src="https://media.istockphoto.com/id/1416145560/es/vector/c%C3%ADrculo-verde-con-marca-verde-icono-plano-de-pegatina-ok-icono-de-marca-de-verificaci%C3%B3n.jpg?s=612x612&w=0&k=20&c=EbbsG4FqVnbxm8_rQu9I8y6cHt91IVjZlz-y2SrucqY=" style="max-width:70px; height:70px;" alt="check"></td>
+      </tr>
+      <tr>
+        <td><label>Peso normal</label></td>
+        <td><img id="img2" src="https://media.istockphoto.com/id/1416145560/es/vector/c%C3%ADrculo-verde-con-marca-verde-icono-plano-de-pegatina-ok-icono-de-marca-de-verificaci%C3%B3n.jpg?s=612x612&w=0&k=20&c=EbbsG4FqVnbxm8_rQu9I8y6cHt91IVjZlz-y2SrucqY=" style="max-width:70px; height:70px;" alt="check"></td>
+      </tr>
+      <tr>
+        <td><label>Sobrepeso</label></td>
+        <td><img id="img3" src="https://media.istockphoto.com/id/1416145560/es/vector/c%C3%ADrculo-verde-con-marca-verde-icono-plano-de-pegatina-ok-icono-de-marca-de-verificaci%C3%B3n.jpg?s=612x612&w=0&k=20&c=EbbsG4FqVnbxm8_rQu9I8y6cHt91IVjZlz-y2SrucqY=" style="max-width:70px; height:70px;" alt="check"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button onclick="back();" class="btn btn-primary mt-3">Volver</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
